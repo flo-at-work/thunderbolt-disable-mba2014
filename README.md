@@ -8,3 +8,9 @@ What this kernel flag does is telling to the Apple firmware that the running OS 
 I propose here a solution which is to reproduce the "non-Darwin" (DTLK) sequence from the DSDT to disable the Thunderbolt but keeping at the same other Apple related optimizations for Linux.
 
 It comes with a python script and a service which runs at boot and after waking from sleep. The script tells to the MacBook to activate the "non-Darwin" sequence related to the Thunderbolt, which then disable completely Thunderbolt.
+
+To install it:
+
+1. copy the 'tb-off.py' into '/usr/local/bin/' folder
+2. copy the 'tb-off.service' into '/etc/systemd/system/'
+3. run: 'sudo systemctl daemon-reload' followed by 'sudo systemctl enable tb-off.service' and by 'sudo systemctl start tb-off.service'

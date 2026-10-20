@@ -1,6 +1,6 @@
 # Switch off the Thunderbolt controller on a 2014 MacBook Air under Linux, without `acpi_osi=!Darwin`
 
-On a MacBook Air 11" (2014), the Thunderbolt 1 controller (Intel DSL3510 "Cactus Ridge") stays powered under Linux and costs about 0.5 W at idle. The usual workaround, `acpi_osi=!Darwin`, switches it off, but it also adds about 2 seconds to every resume from S3 and block other Linux optimizations related to Apple hardware (set battery thresholds...). The other workarounds like modprobe blacklisting or `pcie_ports=compat` kernel flag disable the use of the Thunderbolt but doesn't turn it off.
+On a MacBook Air 11" (2014), the Thunderbolt 1 controller (Intel DSL3510 "Cactus Ridge") stays powered under Linux and costs about 1 W at idle. The usual workaround, `acpi_osi=!Darwin`, switches it off, but it also adds about 2 seconds to every resume from S3 and block other Linux optimizations related to Apple hardware (set battery thresholds...). The other workarounds like modprobe blacklisting or `pcie_ports=compat` kernel flag disable the use of the Thunderbolt but doesn't turn it off.
 
 This repo contains a small script and a systemd unit that give you both: Thunderbolt off **and** the faster resume among with all Linux kernel optimizations for Apple.
 
@@ -12,7 +12,7 @@ Measured with PowerTOP on battery, 20 % brightness, WiFi on, nothing plugged in,
 
 | | `acpi_osi=!Darwin` | No flag, no script | No flag + `tb-off` |
 |---|---|---|---|
-| Idle discharge rate | 4.58 W | 5.14 W (5.12 W on a second run) | ~4.6 W |
+| Idle discharge rate | 4.58 W | 5.54 W | ~4.6 W |
 | Thunderbolt chain on the PCI bus | absent | present | absent |
 | Kernel resume (`Waking up from S3` → `suspend exit`) | ~2.7 s (2.0 s of silence + ~0.7 s) | ~0.7 s | 0.83 s |
 

@@ -57,7 +57,7 @@ The firmware powers the controller back on at every S3 resume (the register retu
 
 ## Install
 
-First check that your PCI topology matches. The addresses are hard-coded in the script:
+First check that your PCI topology matches (without the `acpi_osi=!Darwin` flag). The addresses are hard-coded in the script:
 
 ```bash
 lspci -tv
